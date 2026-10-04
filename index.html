@@ -75,6 +75,57 @@
       </form>
     </section>
 
+    <!-- Seção: Listagem, Busca e Filtros de Treinos -->
+    <section id="listagem">
+      <h2>Meus Treinos Cadastrados</h2>
+
+      <!-- Área de Pesquisa e Filtros -->
+      <fieldset>
+        <legend>Filtrar Treinos</legend>
+        <p>
+          <label for="busca-treino">Pesquisar por nome:</label>
+          <input type="search" id="busca-treino" placeholder="Digite o nome do treino...">
+        </p>
+        <p>
+          <label for="filtro-categoria">Filtrar por Categoria:</label>
+          <select id="filtro-categoria">
+            <option value="">Todas as categorias</option>
+            <option value="hipertrofia">Musculação / Hipertrofia</option>
+            <option value="cardio">Cardio / Corrida</option>
+            <option value="funcional">Treino Funcional</option>
+            <option value="mobilidade">Mobilidade / Alongamento</option>
+          </select>
+        </p>
+      </fieldset>
+
+      <!-- Grade/Lista de Treinos -->
+      <section>
+        <article>
+          <h3>Treino A — Peito e Tríceps</h3>
+          <p><strong>Categoria:</strong> Musculação / Hipertrofia</p>
+          <p><strong>Dia:</strong> Segunda-feira</p>
+          <p><strong>Duração:</strong> 50 min</p>
+          <p><a href="#detalhes">Ver Detalhes</a></p>
+        </article>
+
+        <article>
+          <h3>Treino B — Costas e Bíceps</h3>
+          <p><strong>Categoria:</strong> Musculação / Hipertrofia</p>
+          <p><strong>Dia:</strong> Terça-feira</p>
+          <p><strong>Duração:</strong> 45 min</p>
+          <p><a href="#detalhes">Ver Detalhes</a></p>
+        </article>
+
+        <article>
+          <h3>Corrida Leve + HIIT</h3>
+          <p><strong>Categoria:</strong> Cardio / Corrida</p>
+          <p><strong>Dia:</strong> Quarta-feira</p>
+          <p><strong>Duração:</strong> 30 min</p>
+          <p><a href="#detalhes">Ver Detalhes</a></p>
+        </article>
+      </section>
+    </section>
+
   </main>
 
   <!-- Rodapé -->
