@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FitTrack — Gerenciador de Treinos</title>
-  <link rel="stylesheet" href="css/style.css">
+  <!-- Caminho corrigido para a pasta assets/css -->
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
@@ -25,9 +26,9 @@
   <main id="conteudo-principal">
 
     <!-- Seção: Formulário de Cadastro de Treino -->
-    <section id="cadastro">
+    <section id="cadastro" class="section-container">
       <h2>Nova Ficha de Treino</h2>
-      <form action="#" method="POST">
+      <form action="#" method="POST" class="form-container">
         
         <p>
           <label for="nome-treino">Nome do Treino / Grupo Muscular:</label>
@@ -69,18 +70,18 @@
         </p>
 
         <p>
-          <button type="submit">Cadastrar Treino</button>
+          <button type="submit" class="btn btn-primary">Cadastrar Treino</button>
         </p>
 
       </form>
     </section>
 
     <!-- Seção: Listagem, Busca e Filtros de Treinos -->
-    <section id="listagem">
+    <section id="listagem" class="section-container">
       <h2>Meus Treinos Cadastrados</h2>
 
       <!-- Área de Pesquisa e Filtros -->
-      <fieldset>
+      <fieldset class="filters-container">
         <legend>Filtrar Treinos</legend>
         <p>
           <label for="busca-treino">Pesquisar por nome:</label>
@@ -98,38 +99,50 @@
         </p>
       </fieldset>
 
-      <!-- Grade/Lista de Treinos -->
-      <section>
-        <article>
+      <!-- Grade/Lista de Treinos com CSS Grid -->
+      <section class="listagem-grid">
+        <article class="item-card">
           <h3>Treino A — Peito e Tríceps</h3>
           <p><strong>Categoria:</strong> Musculação / Hipertrofia</p>
           <p><strong>Dia:</strong> Segunda-feira</p>
           <p><strong>Duração:</strong> 50 min</p>
-          <p><a href="#detalhes">Ver Detalhes</a></p>
+          <p class="card-actions">
+            <a href="#detalhes" class="btn btn-secondary">Ver Detalhes</a>
+            <button type="button" class="btn btn-edit">Editar</button>
+            <button type="button" class="btn btn-delete">Excluir</button>
+          </p>
         </article>
 
-        <article>
+        <article class="item-card">
           <h3>Treino B — Costas e Bíceps</h3>
           <p><strong>Categoria:</strong> Musculação / Hipertrofia</p>
           <p><strong>Dia:</strong> Terça-feira</p>
           <p><strong>Duração:</strong> 45 min</p>
-          <p><a href="#detalhes">Ver Detalhes</a></p>
+          <p class="card-actions">
+            <a href="#detalhes" class="btn btn-secondary">Ver Detalhes</a>
+            <button type="button" class="btn btn-edit">Editar</button>
+            <button type="button" class="btn btn-delete">Excluir</button>
+          </p>
         </article>
 
-        <article>
+        <article class="item-card">
           <h3>Corrida Leve + HIIT</h3>
           <p><strong>Categoria:</strong> Cardio / Corrida</p>
           <p><strong>Dia:</strong> Quarta-feira</p>
           <p><strong>Duração:</strong> 30 min</p>
-          <p><a href="#detalhes">Ver Detalhes</a></p>
+          <p class="card-actions">
+            <a href="#detalhes" class="btn btn-secondary">Ver Detalhes</a>
+            <button type="button" class="btn btn-edit">Editar</button>
+            <button type="button" class="btn btn-delete">Excluir</button>
+          </p>
         </article>
       </section>
     </section>
 
     <!-- Seção: Detalhes do Treino Selecionado -->
-    <section id="detalhes">
+    <section id="detalhes" class="section-container">
       <h2>Detalhes do Treino</h2>
-      <article>
+      <article class="item-card">
         <h3>Treino A — Peito e Tríceps</h3>
         <p><strong>Categoria:</strong> Musculação / Hipertrofia</p>
         <p><strong>Dia da Semana:</strong> Segunda-feira</p>
@@ -140,7 +153,7 @@
         <p>Crucifixo na Polia — 3 séries de 12 repetições</p>
         <p>Tríceps Testa com Barra W — 4 séries de 10 repetições</p>
         <p>Tríceps Pulley na Polia — 3 séries de 15 repetições</p>
-        <p><a href="#listagem">← Voltar para a listagem</a></p>
+        <p><a href="#listagem" class="btn btn-secondary">← Voltar para a listagem</a></p>
       </article>
     </section>
 
