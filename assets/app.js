@@ -139,3 +139,114 @@ function verDetalhes(id) {
 }
 
 listarTreinos();
+let treinos = JSON.parse(localStorage.getItem('fittrack_dados')) || [];
+let idEmEdicao = null;
+
+const formulario = document.querySelector('.form-container');
+if (formulario) {
+    formulario.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const nome = document.getElementById('nome-treino').value;
+        const categoria = document.getElementById('categoria').value;
+        const dia = document.getElementById('dia-semana').value;
+        const duracao = document.getElementById('duracao').value;
+
+        if (nome === "" || categoria === "") {
+            alert("Preencha os campos obrigatórios!");
+            return;
+        }
+
+        if (idEmEdicao === null) {
+            const novoTreino = {
+                id: Date.now(),
+                nome: nome,
+                categoria: categoria,
+                dia: dia,
+                duracao: duracao
+            };
+            treinos.push(novoTreino);
+            alert("Treino cadastrado com sucesso!");
+        } else {
+            treinos = treinos.map(item => {
+                if (item.id === idEmEdicao) {
+                    return { id: item.id, nome, categoria, dia, duracao };
+                }
+                return item;
+            });
+            alert("Treino atualizado com sucesso!");
+            idEmEdicao = null;
+        }
+
+        localStorage.setItem('fittrack_dados', JSON.stringify(treinos));
+        formulario.reset();
+        listarTreinos();
+    });
+}
+
+function listarTreinos() {
+    const grid = document.querySelector('.listagem-grid');
+    if (!grid) return;
+
+    grid.innerHTML = "";
+
+    for (let i = 0; i < treinos.length; i++) {
+        const item = treinos[i];
+        grid.innerHTML += `
+            <article class="item-card">
+                <h3>${item.nome}</h3>
+                <p><strong>Categoria:</strong> ${item.categoria}</p>
+                <p><strong>Dia:</strong> ${item.dia}</p>
+                <p><strong>Duração:</strong> ${item.duracao} min</p>
+                <p class="card-actions">
+                    <button type="button" class="btn btn-secondary" onclick="verDetalhes(${item.id})">Detalhes</button>
+                    <button type="button" class="btn btn-edit" onclick="prepararEdicao(${item.id})">Editar</button>
+                    <button type="button" class="btn btn-delete" onclick="excluirTreino(${item.id})">Excluir</button>
+                </p>
+            </article>
+        `;
+    }
+}
+
+function prepararEdicao(id) {
+    const item = treinos.find(i => i.id === id);
+    if (!item) return;
+
+    document.getElementById('nome-treino').value = item.nome;
+    document.getElementById('categoria').value = item.categoria;
+    document.getElementById('dia-semana').value = item.dia;
+    document.getElementById('duracao').value = item.duracao;
+
+    idEmEdicao = item.id;
+    location.hash = '#cadastro';
+}
+
+function excluirTreino(id) {
+    if (confirm("Deseja excluir este treino?")) {
+        treinos = treinos.filter(item => item.id !== id);
+        localStorage.setItem('fittrack_dados', JSON.stringify(treinos));
+        listarTreinos();
+    }
+}
+
+function verDetalhes(id) {
+    const item = treinos.find(i => i.id === id);
+    if (!item) return;
+
+    const secaoDetalhes = document.getElementById('detalhes');
+    if (secaoDetalhes) {
+        secaoDetalhes.innerHTML = `
+            <h2>Detalhes do Treino</h2>
+            <article class="item-card">
+                <h3>${item.nome}</h3>
+                <p><strong>Categoria:</strong> ${item.categoria}</p>
+                <p><strong>Dia da Semana:</strong> ${item.dia}</p>
+                <p><strong>Duração:</strong> ${item.duracao} min</p>
+                <p><a href="#listagem" class="btn btn-secondary">Voltar</a></p>
+            </article>
+        `;
+        location.hash = '#detalhes';
+    }
+}
+
+listarTreinos();
