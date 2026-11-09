@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitTrack — Gerenciador de Treinos</title>
+  <!-- Caminho corrigido para a pasta assets/css -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Cabeçalho Principal -->
+  <header>
+    <h1>🏋️ FitTrack</h1>
+    <p>Gerenciador de Treinos e Exercícios Diários</p>
+    <nav>
+      <ul>
+        <li><a href="#cadastro">Cadastrar Treino</a></li>
+        <li><a href="#listagem">Meus Treinos</a></li>
+        <li><a href="#detalhes">Detalhes</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main id="conteudo-principal">
+
+    <!-- Seção: Formulário de Cadastro de Treino -->
+    <section id="cadastro" class="section-container">
+      <h2>Nova Ficha de Treino</h2>
+      <form action="#" method="POST" class="form-container">
+        
+        <p>
+          <label for="nome-treino">Nome do Treino / Grupo Muscular:</label>
+          <input type="text" id="nome-treino" name="nome-treino" placeholder="Ex: Treino A - Peito e Tríceps" required>
+        </p>
+
+        <p>
+          <label for="categoria">Categoria:</label>
+          <select id="categoria" name="categoria" required>
+            <option value="">Selecione...</option>
+            <option value="hipertrofia">Musculação / Hipertrofia</option>
+            <option value="cardio">Cardio / Corrida</option>
+            <option value="funcional">Treino Funcional</option>
+            <option value="mobilidade">Mobilidade / Alongamento</option>
+          </select>
+        </p>
+
+        <p>
+          <label for="dia-semana">Dia da Semana:</label>
+          <select id="dia-semana" name="dia-semana" required>
+            <option value="segunda">Segunda-feira</option>
+            <option value="terca">Terça-feira</option>
+            <option value="quarta">Quarta-feira</option>
+            <option value="quinta">Quinta-feira</option>
+            <option value="sexta">Sexta-feira</option>
+            <option value="sabado">Sábado</option>
+            <option value="domingo">Domingo</option>
+          </select>
+        </p>
+
+        <p>
+          <label for="duracao">Duração Estimada (minutos):</label>
+          <input type="number" id="duracao" name="duracao" min="10" max="180" placeholder="Ex: 50" required>
+        </p>
+
+        <p>
+          <label for="observacoes">Lista de Exercícios / Observações:</label>
+          <textarea id="observacoes" name="observacoes" rows="4" placeholder="Ex: Supino reto 4x10, Tríceps corda 3x12..."></textarea>
+        </p>
+
+        <p>
+          <button type="submit" class="btn btn-primary">Cadastrar Treino</button>
+        </p>
+
+      </form>
+    </section>
+
+    <!-- Seção: Listagem, Busca e Filtros de Treinos -->
+    <section id="listagem" class="section-container">
+      <h2>Meus Treinos Cadastrados</h2>
+
+      <!-- Área de Pesquisa e Filtros -->
+      <fieldset class="filters-container">
+        <legend>Filtrar Treinos</legend>
+        <p>
+          <label for="busca-treino">Pesquisar por nome:</label>
+          <input type="search" id="busca-treino" placeholder="Digite o nome do treino...">
+        </p>
+        <p>
+          <label for="filtro-categoria">Filtrar por Categoria:</label>
+          <select id="filtro-categoria">
+            <option value="">Todas as categorias</option>
+            <option value="hipertrofia">Musculação / Hipertrofia</option>
+            <option value="cardio">Cardio / Corrida</option>
+            <option value="funcional">Treino Funcional</option>
+            <option value="mobilidade">Mobilidade / Alongamento</option>
+          </select>
+        </p>
+      </fieldset>
+
+      <!-- Grade/Lista de Treinos com CSS Grid -->
+      <section class="listagem-grid">
+        <article class="item-card">
+          <h3>Treino A — Peito e Tríceps</h3>
+          <p><strong>Categoria:</strong> Musculação / Hipertrofia</p>
+          <p><strong>Dia:</strong> Segunda-feira</p>
+          <p><strong>Duração:</strong> 50 min</p>
+          <p class="card-actions">
+            <a href="#detalhes" class="btn btn-secondary">Ver Detalhes</a>
+            <button type="button" class="btn btn-edit">Editar</button>
+            <button type="button" class="btn btn-delete">Excluir</button>
+          </p>
+        </article>
+
+        <article class="item-card">
+          <h3>Treino B — Costas e Bíceps</h3>
+          <p><strong>Categoria:</strong> Musculação / Hipertrofia</p>
+          <p><strong>Dia:</strong> Terça-feira</p>
+          <p><strong>Duração:</strong> 45 min</p>
+          <p class="card-actions">
+            <a href="#detalhes" class="btn btn-secondary">Ver Detalhes</a>
+            <button type="button" class="btn btn-edit">Editar</button>
+            <button type="button" class="btn btn-delete">Excluir</button>
+          </p>
+        </article>
+
+        <article class="item-card">
+          <h3>Corrida Leve + HIIT</h3>
+          <p><strong>Categoria:</strong> Cardio / Corrida</p>
+          <p><strong>Dia:</strong> Quarta-feira</p>
+          <p><strong>Duração:</strong> 30 min</p>
+          <p class="card-actions">
+            <a href="#detalhes" class="btn btn-secondary">Ver Detalhes</a>
+            <button type="button" class="btn btn-edit">Editar</button>
+            <button type="button" class="btn btn-delete">Excluir</button>
+          </p>
+        </article>
+      </section>
+    </section>
+
+    <!-- Seção: Detalhes do Treino Selecionado -->
+    <section id="detalhes" class="section-container">
+      <h2>Detalhes do Treino</h2>
+      <article class="item-card">
+        <h3>Treino A — Peito e Tríceps</h3>
+        <p><strong>Categoria:</strong> Musculação / Hipertrofia</p>
+        <p><strong>Dia da Semana:</strong> Segunda-feira</p>
+        <p><strong>Duração Estimada:</strong> 50 minutos</p>
+        <p><strong>Lista de Exercícios e Séries:</strong></p>
+        <p>Supino Reto com Barra — 4 séries de 10 repetições</p>
+        <p>Supino Inclinado com Halteres — 3 séries de 12 repetições</p>
+        <p>Crucifixo na Polia — 3 séries de 12 repetições</p>
+        <p>Tríceps Testa com Barra W — 4 séries de 10 repetições</p>
+        <p>Tríceps Pulley na Polia — 3 séries de 15 repetições</p>
+        <p><a href="#listagem" class="btn btn-secondary">← Voltar para a listagem</a></p>
+      </article>
+    </section>
+
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>&copy; 2026 FitTrack — Trabalho Prático DIW , PUC Minas</p>
+  </footer>
+
+</body>
+</html>
