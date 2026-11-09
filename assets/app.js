@@ -109,3 +109,43 @@ function listarTreinos(lista = treinos) {
         `;
     }
 }
+function prepararEdicao(id) {
+    const item = treinos.find(i => i.id === id);
+    if (!item) return;
+
+    document.getElementById('nome-treino').value = item.nome;
+    document.getElementById('categoria').value = item.categoria;
+    document.getElementById('dia-semana').value = item.dia;
+    document.getElementById('duracao').value = item.duracao;
+
+    idEmEdicao = item.id;
+    location.hash = '#cadastro';
+}
+
+function excluirTreino(id) {
+    if (confirm("Deseja excluir este treino?")) {
+        treinos = treinos.filter(item => item.id !== id);
+        localStorage.setItem('fittrack_dados', JSON.stringify(treinos));
+        filtrarTreinos();
+    }
+}
+
+function verDetalhes(id) {
+    const item = treinos.find(i => i.id === id);
+    if (!item) return;
+
+    const secaoDetalhes = document.getElementById('detalhes');
+    if (secaoDetalhes) {
+        secaoDetalhes.innerHTML = `
+            <h2>Detalhes do Treino</h2>
+            <article class="item-card">
+                <h3>${item.nome}</h3>
+                <p><strong>Categoria:</strong> ${item.categoria}</p>
+                <p><strong>Dia da Semana:</strong> ${item.dia}</p>
+                <p><strong>Duração:</strong> ${item.duracao} min</p>
+                <p><a href="#listagem" class="btn btn-secondary">Voltar</a></p>
+            </article>
+        `;
+        location.hash = '#detalhes';
+    }
+}
