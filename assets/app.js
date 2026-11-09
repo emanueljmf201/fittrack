@@ -62,3 +62,50 @@ function excluirTreino(id) {
         filtrarTreinos();
     }
 }
+const inputBusca = document.getElementById('busca-treino');
+const selectFiltro = document.getElementById('filtro-categoria');
+
+if (inputBusca) inputBusca.addEventListener('input', filtrarTreinos);
+if (selectFiltro) selectFiltro.addEventListener('change', filtrarTreinos);
+
+function filtrarTreinos() {
+    const termo = inputBusca ? inputBusca.value.toLowerCase() : "";
+    const categoriaFiltro = selectFiltro ? selectFiltro.value : "";
+
+    const filtrados = treinos.filter(item => {
+        const correspondeNome = item.nome.toLowerCase().includes(termo);
+        const correspondeCat = categoriaFiltro === "" || item.categoria === categoriaFiltro;
+        return correspondeNome && correspondeCat;
+    });
+
+    listarTreinos(filtrados);
+}
+
+function listarTreinos(lista = treinos) {
+    const grid = document.querySelector('.listagem-grid');
+    if (!grid) return;
+
+    grid.innerHTML = "";
+
+    if (lista.length === 0) {
+        grid.innerHTML = "<p>Nenhum treino encontrado.</p>";
+        return;
+    }
+
+    for (let i = 0; i < lista.length; i++) {
+        const item = lista[i];
+        grid.innerHTML += `
+            <article class="item-card">
+                <h3>${item.nome}</h3>
+                <p><strong>Categoria:</strong> ${item.categoria}</p>
+                <p><strong>Dia:</strong> ${item.dia}</p>
+                <p><strong>Duração:</strong> ${item.duracao} min</p>
+                <p class="card-actions">
+                    <button type="button" class="btn btn-secondary" onclick="verDetalhes(${item.id})">Detalhes</button>
+                    <button type="button" class="btn btn-edit" onclick="prepararEdicao(${item.id})">Editar</button>
+                    <button type="button" class="btn btn-delete" onclick="excluirTreino(${item.id})">Excluir</button>
+                </p>
+            </article>
+        `;
+    }
+}
