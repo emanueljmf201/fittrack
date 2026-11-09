@@ -149,3 +149,18 @@ function verDetalhes(id) {
         location.hash = '#detalhes';
     }
 }
+async function carregarDicaApi() {
+    try {
+        const resposta = await fetch('https://api.adviceslip.com/advice');
+        const dados = await resposta.json();
+        const headerP = document.querySelector('header p');
+        if (headerP && dados.slip) {
+            headerP.innerHTML += ` | 💡 <em>${dados.slip.advice}</em>`;
+        }
+    } catch (e) {
+        console.log("Erro ao carregar API");
+    }
+}
+
+filtrarTreinos();
+carregarDicaApi();
